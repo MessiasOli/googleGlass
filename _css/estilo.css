@@ -254,3 +254,15 @@ div#interface {
     padding: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5) ;
 }
+
+video#filme_01 {
+    width: 580px;
+    padding: 10;
+    border-radius: 30px;
+}
+
+video#filme_02 {
+    width: 348px;
+    border-radius: 10px;
+}
+
