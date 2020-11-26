@@ -4,7 +4,14 @@
         <meta charset="UTF-8">
         <Title>Tudo sobre Google Glasses</TItle>
         <link rel="stylesheet" type="text/css" href="_css/estilo.css">
-        <link rel="stykesheet" type="text/css" href="_css/form.css">
+        <link rel="stylesheet" href="_css/form.css">
+        <script>
+            function calc_total(){
+                var qtd = parseInt(document.getElementById("cQtd").value);
+                var tot = qtd * 1500;
+                document.getElementById("cTot").value = tot.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'});
+            }
+        </script>
     </head>
     <body>
     
@@ -40,52 +47,69 @@
                         </hgroup>
                     </header>
 
-                <form action="">
-                    <fieldset>
-                        Identificação do Usuário
-                            Nome:
-                            Senha:
-                            E-mail:
-                            Sexo:
-                                - Masculino
-                                - Feminino
-                            Data de Nascimento:
-                    </fieldset>
-                    <fieldset>
-                        Endereço do Usuário
-                            Logradouro:
-                            Número:
-                            Estado:
-                            Cidade:
-                    </fieldset>]
-                    <fieldset>
-                        Mensagem do Usuário
-                            Grau de Urgência:
-                            Mensagem:
-                    </fieldset>
-                    <fieldset>
-                        Quero um Google Glass
-                            Gostaria de adquirir um Google Glass quando disponível
-                            Cor:
-                            Quantidade:
-                            Preço Total: R$
-                    </fieldset>
+                    <form id="fContato" method="POST" action="mailto:messias.oliveira6296@gmail.com" oninput="calc_total();">
+                        <fieldset id="usuario">
+                            <legend>Identificação do Usuário</legend>
+                                <p><label for="cNome">Nome:</label> <input type="text" name="tNome" id="cNome" size="20" maxlength="30" placeholder="Nome Completo"> </p>
+                                <p><label for="cSenha">Senha:</label> <input type="password" name="tSenha" id="cSenha" size="20" maxlength="8" placeholder="8 Digitos" ></p>
+                                <p><label for="cEmail">E-mail:</label> <input type="email" name="tEmail" id="cEmail" placeholder="E-mail"> </p>
+                                <fieldset id="sexo">
+                                    <legend>Sexo:</legend>
+                                        <input type="radio" name="tSexo" id="cMasc" checked> <label for="cMasc">Masculino</label> <br>
+                                        <input type="radio" name="tSexo" id="cFem"> <label for="cFem">Feminino</label>
+                                </fieldset>
+                                <p><label for="cDate">Data de Nascimento:</label> <input type="date" size="20" name="tDate" id="cDate"> </p>
+                        </fieldset>
+                        <fieldset id="endereco">
+                            <legend>Endereço do Usuário</legend>
+                                <p><label for="cRua">Logradouro:</label> <input type="text" name="tRua" id="cRua" size="20" maxlength="80" placeholder="Rua, Av, Trav, ..."> </p>
+                                <p><label for="cNumero">Número:</label> <input type="number" name="tNumero" id="cNumero" min="0" max="999999" maxLengh="6" placeholder="N°"></p>
+                                <p><label for="cEstado">Estado:</label> <select name="tEstado" id="cEstado">
+                                    <optgroup label="Região Sudeste">
+                                        <option value="RJ">Rio de Janeiro</option>
+                                        <option value="SP" selected>São Paulo</option>
+                                        <option value="MG">Minas Gerais</option>
+                                    </optgroup>
+                                    <optgroup label="Região Sul">
+                                        <option value="PR">Paraná</option>
+                                        <option value="SC">Santa Catarina</option>
+                                        <option value="RS">Rio Grande do Sul</option>
+                                    </optgroup>
+                                </select></p>
+                                <p><label for="cCid">Cidade:</label> <input type="text" name="tCid" id="cCid" size="20" maxlength="40" placeholder="Sua Cidade" list="cidades"></p>
+                                <datalist id="cidades">
+                                    <option value="Rio de Janeiro"></option>
+                                    <option value="Nova Iguaçu"></option>
+                                    <option value="Niterói"></option>
+                                    <option value="Belford Roxo"></option>
+                                </datalist>
+                        </fieldset>
+                        <fieldset id="mensagem">
+                            <legend>Mensagem do Usuário</legend>
+                                <p><label for="cUrg">Grau de Urgência: Min </label><input type="range" name="tUrg" id="cUrg" min="0" max="10" step="2" > Max</p>
+                                <p><label for="cMsg">Mensagem:</label> <textarea name="tMsg" id="cMsg" cols="45" rows="5"></textarea></p>
+                        </fieldset>
+                        <fieldset id="Pedido">
+                            <legend>Quero um Google Glass</legend>
+                                <p><input type="checkbox" name="tPad" id="cPad" checked><label for="cPed">Gostaria de adquirir um Google Glass quando disponível</label></p>
+                                <p><label for="cCor">Cor:</label> <input type="color" name="tCor" id="cCor" value="#0000FF"></p>
+                                <p><label for="cQtd">Quantidade:</label> <input type="number" name="tQtd" id="cQtd" min="0" max="999" > </p>
+                                <p><label for="cTot">Preço Total: </label> <input type="text" name="tTot" id="cTot" placeholder="Total a pagar" readonly> </p>
+                        </fieldset>
 
-                        [BOTÃO ENVIAR]
-            </form>
-                    </article> 
-                </section>
-<footer id="rodape">
-    <p>Copyright &copy; 2013 - by Messias Oliveira <br>
-    <a href="https://www.facebook.com/messias.oliveira.92167" target="_blank">Facebook</a> | Twitter</p> 
-</footer>
-</div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/rellax/1.12.1/rellax.min.js"></script>
-<script>
-    var rellax = new Rellax('.rellax')
-</script>
-
-</body>
-<script src="_javascript/funcoes.js"></script>
+                        <input id="button" type="image" name="tEnviar" src="_imagens/botao-enviar.png">
+                    </form>
+                </article> 
+            </section>
+            <footer id="rodape">
+                <p>Copyright &copy; 2013 - by Messias Oliveira <br>
+                <a href="https://www.facebook.com/messias.oliveira.92167" target="_blank">Facebook</a> | Twitter</p> 
+            </footer>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/rellax/1.12.1/rellax.min.js"></script>
+        <script>
+            var rellax = new Rellax('.rellax')
+        </script>
+    </body>
+    <script src="_javascript/funcoes.js"></script>
 </html>
